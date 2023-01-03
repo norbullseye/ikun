@@ -1,0 +1,299 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"/> 
+<title>ikun-鸡你太美</title> 
+<link rel="SHORTCUT ICON" href="favicon.ico"/>
+<style> 
+.browserWidth{ height:640px; border:1px solid #000; margin:0 auto} 
+@media screen and (min-width: 1201px) { 
+.browserWidth {width: 1200px}  
+} 
+/* css 注释说明：设置了浏览器宽度不小于1201px时 browserWidth 显示1200px宽度 */ 
+ 
+@media screen and (max-width: 1200px) { 
+.browserWidth {width: 960px}  
+} 
+/* 设置了浏览器宽度不大于1200px时 browserWidth 显示960px宽度 */ 
+ 
+@media screen and (max-width: 960px) { 
+.browserWidth {width: 600px;}  
+} 
+/* 设置了浏览器宽度不大于960px时 browserWidth 显示600px宽度 */ 
+ 
+@media screen and (max-width: 640px) { 
+.browserWidth {width: 200px;}  
+} 
+/* 设置了浏览器宽度不大于640px时 browserWidth 显示200px宽度 */ 
+
+    p{
+        margin: 50px;
+    }
+    p#grey{
+        color: darkgrey;
+    }
+    /*提示文字*/
+    p.value1{
+        margin: 5px;
+    }
+    /*让属性值显示得更紧凑*/
+
+    ul,li{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    /*列表css*/
+
+    .nav {
+      width: 80%;
+      line-height: 48px;
+      background: #f6f8fa;
+      overflow: hidden;
+      margin: 10px auto 0;
+    }
+
+    .nav li {
+      width: 140px;
+      line-height: 48px;
+      display: inline-block;
+      color: #7f7f7f;
+      font-size: 16px;
+      font-family: "Microsoft Yahei";
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .nav li span {
+      padding-left: 4px;
+      font-size: 12px;
+      color: red;
+    }
+    /*任务提示（红）*/
+
+    .nav li.on {
+      border-top: 3px solid #17b8f8;
+      border-radius: 7px 7px 0 0;
+      background: #fff;
+    }
+
+    :root{
+        --primary-color: royalblue;
+    }
+    button{
+        padding: 5px 16px;
+        color: #000000d9;
+        border: 1px solid #d9d9d9;
+        background-color: transparent;
+        border-radius: 2px;
+        line-height: 1.4;
+        box-shadow: 0 2px #00000004;
+        cursor: pointer;
+        transition: .3s;
+        height: 50px;
+        width: 100px;
+        margin: 30px;
+        margin-left: 45px;
+        margin-right: 45px;
+    }
+    button:hover{
+        color: var(--primary-color);
+        border-color: currentColor;
+    }
+    button::after{
+    /*其他样式*/
+        opacity: 0;
+        box-shadow: 0 0 0 6px var(--primary-color);
+        transition: .3s;
+    }
+    /*点击*/
+    button:active::after{
+        box-shadow: none;
+        opacity: 0.4;
+        transition: 0s; /*取消过渡*/
+    }
+    /*按钮样式*/
+    button.gongneng{
+        height: 30px;
+        width: 60px;
+        margin: 15px;
+    }
+</style> 
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<!--jquery-->
+</head> 
+
+<body> 
+<div class="browserWidth">
+    <p id="guide"></p> 
+    <div hidden id="main">
+        <ul class="nav" id="nav">
+            <li class="on" onclick="exerciseBox()">练习<span></span></li><!--选项卡-->
+            <li onclick="hikeBox()">远足<span></span></li>
+            <li onclick="valueBox()">属性<span></span></li>
+            <li onclick="bagBox()">背包<span></span></li>
+        </ul>
+        <div id="tabbox1">
+            <button id="first" onclick='exercise()'>唱,跳,rap</button>
+        </div>
+        <div id="tabbox2" hidden>
+            <button onclick='besideVillage()'>探索-村边</button>
+        </div>
+        <div id="tabbox3" hidden>
+        </div>
+        <div id="tabbox4" hidden>
+        </div>
+    </div> 
+    <p id="grey">点只因文字继续...</p><!--只因-->  
+</div>
+<script>
+    var branch ; //树枝
+    var litchi ; //荔枝
+    var healthy ; //健康
+    var onlyBecause ; //只因值（笑）
+    var warehouse ; //仓库
+    var basketball ; //篮球
+    var place; //位置
+    var now; //时间戳
+    if (getCookie("frist") == null) {//剧情对话
+        branch = 0;
+        litchi = 0;
+        healthy = 100;
+        onlyBecause = 10;
+        basketball = 0; 
+        place = "ikun村";
+                /*定义变量*/
+      $("#guide").text("很不幸,出了车祸,你被大货车创死了") ;
+      $("#guide").click(function(){
+         $("#guide").text("但你重生到了ikun的世界!");
+         $("#guide").click(function(){
+            $("p").unbind();
+            $("#guide").text("能否成为世界一流的小黑子,就看你的了"); 
+            $("#guide").click(function(){
+                $("p").fadeOut(); //淡出开局文字
+                setTimeout(() => {
+                    $("#main").fadeIn(); //淡入主页面
+                }, 500); //等待500毫秒
+                setCookie("frist",1);//存档
+                });
+            }); 
+        }); 
+    }else{
+        setCookie("frist",1);
+        if (getCookie("file") === null){
+        }else{
+            var myStr = getCookie("file");
+            var strArray = myStr.split(",");
+                branch = strArray[0];
+                litchi = strArray[1];
+                healthy = strArray[2];
+                onlyBecause = strArray[3];
+                basketball = strArray[4]; 
+                place = strArray[5];
+            /*for(var i = 0; i < strArray.length; i++){
+                document.write("<p>" + strArray[i] + "</p>");
+            }*/
+        }
+        $("p").hide(); //隐藏开局文字
+        $("#main").fadeIn(); //淡入主页面
+    }   
+     
+    function setCookie(name, value) {  //保存cookie
+        var exp = new Date();  
+        exp.setTime(exp.getTime() + 60 * 365 * 24 * 60 * 60 * 1000);  
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";  
+    }
+     function getCookie(name) {  //读取cookie
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");  
+        if (arr = document.cookie.match(reg))  
+            return unescape(arr[2]);  
+        else  
+            return null;  
+    }
+    $('li').click(function() { //选项卡
+        $(this).addClass('on').siblings().removeClass();
+     })
+    function tishi(str,time) { //提示文字
+        $("#grey").text(str);
+        $("#grey").fadeIn();
+        setTimeout(() => {
+            $("#grey").fadeOut(); //淡出提示
+        }, time); //等待一段时间
+    }
+
+    function exerciseBox() { //练习选项卡
+        $("#tabbox1").show();
+        $("#tabbox2").hide();
+        $("#tabbox3").hide();
+        $("#tabbox4").hide();
+        upset();
+    }
+    function hikeBox() { //远足选项卡
+        $("#tabbox2").show();
+        $("#tabbox1").hide();
+        $("#tabbox3").hide();
+        $("#tabbox4").hide();
+
+    }
+    function valueBox() {//属性选项卡
+        $("#tabbox3").html("<p class='value1'>位置:" + place + "</p></br><p class='value1'>树枝:" + branch + "</p></br><p class='value1'>荔枝:" + litchi + "</p></br><p class='value1'>健康:" + healthy + "</p></br><p class='value1'>只因值:" + onlyBecause + "</p></br><p class='value1'>篮球:" + basketball + "</p></br>");
+        $("#tabbox3").show();
+        $("#tabbox1").hide();
+        $("#tabbox2").hide();
+        $("#tabbox4").hide();
+    }
+    function bagBox() { //背包选项卡
+        $("#tabbox4").show();
+        $("#tabbox1").hide();
+        $("#tabbox2").hide();
+        $("#tabbox3").hide();
+    }
+
+    function exercise() {  //练习按钮
+        branch += 1;
+        litchi += 1;
+    }
+    function besideVillage() { //探索村边按钮
+        
+    }
+    function lanqiu() { //打篮球按钮
+        if (branch>=30) {
+            branch -= 30; //购买一个篮球
+            basketball ++; //篮球+1
+            tishi("篮球+1",2000);
+        } else {
+            tishi("树枝不足",2000);
+        }
+    }
+ 
+    function num(){//将变量转换为数字
+        branch = Number(branch);
+        litchi = Number(litchi);
+        healthy = Number(healthy);
+        onlyBecause = Number(onlyBecause);
+        basketball = Number(basketball); 
+    }
+    function upset(){ //更新
+        var edom = $("#lanqiu")[0];
+        if (branch>=30 && !edom) {
+            var lan="<button id='lanqiu' onclick='lanqiu()'title='花费30树枝以购买篮球,一个篮球每秒能为你提供一个树枝'>打篮球</button>";
+            $("#first").after(lan);
+            //追加按钮”打篮球"
+            tishi("点击[打篮球]花费30树枝以购买篮球,一个篮球每秒能为你提供一个树枝",7000);
+        } 
+    }
+
+    var timer1 = setInterval(function() { 
+        num();
+        branch = branch + basketball;//树枝每两秒自增
+    }, 1000);
+
+    var timer2 = setInterval(function() { 
+        num();
+        var placeOnFile = branch+","+litchi+","+healthy+","+onlyBecause+","+basketball+","+place;
+        //变量全部拼接在一起
+        setCookie("file",placeOnFile);//存档
+    }, 20000);
+</script> 
+</body> 
+</html>
