@@ -154,6 +154,7 @@
     var warehouse ; //仓库
     var basketball ; //篮球
     var place; //位置
+    var explore; //探索值
     var now; //时间戳
     if (getCookie("frist") == null) {//剧情对话
         branch = 0;
@@ -162,7 +163,8 @@
         onlyBecause = 10;
         basketball = 0; 
         place = "ikun村";
-                /*定义变量*/
+        explore = 0;
+            /*定义变量*/
       $("#guide").text("很不幸,出了车祸,你被大货车创死了") ;
       $("#guide").click(function(){
          $("#guide").text("但你重生到了ikun的世界!");
@@ -183,15 +185,27 @@
         if (getCookie("file") === null){
         }else{
             var myStr = getCookie("file");
-            var strArray = myStr.split(",");
-                branch = strArray[0];
-                litchi = strArray[1];
-                healthy = strArray[2];
-                onlyBecause = strArray[3];
-                basketball = strArray[4]; 
-                place = strArray[5];
-            /*for(var i = 0; i < strArray.length; i++){
-                document.write("<p>" + strArray[i] + "</p>");
+            var cookiesArr = myStr.split(",");
+                branch = cookiesArr[0];
+                litchi = cookiesArr[1];
+                healthy = cookiesArr[2];
+                onlyBecause = cookiesArr[3];
+                basketball = cookiesArr[4]; 
+                place = cookiesArr[5];
+                //提取变量
+                console.log(cookiesArr.length);
+                switch(cookiesArr.length)
+                {
+                    case 6: //未储存探索
+                        explore = 0; //定义探索
+                        break;
+                    case 7: //已储存探索
+                        explore = cookiesArr[6]; //提取
+                        break;
+                    default:
+                }
+            /*for(var i = 0; i < cookiesArr.length; i++){
+                document.write("<p>" + cookiesArr[i] + "</p>");
             }*/
         }
         $("p").hide(); //隐藏开局文字
@@ -233,6 +247,7 @@
         $("#tabbox1").hide();
         $("#tabbox3").hide();
         $("#tabbox4").hide();
+        upset();
 
     }
     function valueBox() {//属性选项卡
@@ -241,12 +256,16 @@
         $("#tabbox1").hide();
         $("#tabbox2").hide();
         $("#tabbox4").hide();
+        upset();
+
     }
     function bagBox() { //背包选项卡
         $("#tabbox4").show();
         $("#tabbox1").hide();
         $("#tabbox2").hide();
         $("#tabbox3").hide();
+        upset();
+
     }
 
     function exercise() {  //练习按钮
@@ -274,26 +293,25 @@
         basketball = Number(basketball); 
     }
     function upset(){ //更新
-        var edom = $("#lanqiu")[0];
-        if (branch>=30 && !edom) {
+        var edom = $("#lanqiu")[0]; //判定有无按钮"打篮球"
+        if (branch>=30 && !edom) { //追加按钮”打篮球"
             var lan="<button id='lanqiu' onclick='lanqiu()'title='花费30树枝以购买篮球,一个篮球每秒能为你提供一个树枝'>打篮球</button>";
             $("#first").after(lan);
-            //追加按钮”打篮球"
             tishi("点击[打篮球]花费30树枝以购买篮球,一个篮球每秒能为你提供一个树枝",6000);
         } 
     }
 
-    var timer1 = setInterval(function() { 
+    var timer1 = setInterval(function() { //每两秒执行一次
         num();
         branch = branch + basketball;//树枝每两秒自增
-    }, 1000);
+    }, 2000);
 
-    var timer2 = setInterval(function() { 
+    var timer2 = setInterval(function() { //每十五秒执行一次
         num();
-        var placeOnFile = branch+","+litchi+","+healthy+","+onlyBecause+","+basketball+","+place;
+        var placeOnFile = branch+","+litchi+","+healthy+","+onlyBecause+","+basketball+","+place+","+explore;
         //变量全部拼接在一起
         setCookie("file",placeOnFile);//存档
-    }, 20000);
+    }, 15000);
 </script> 
 </body> 
 </html>
