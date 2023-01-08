@@ -32,6 +32,13 @@
     </div> 
     <p id="grey">点只因文字继续...</p><!--只因-->  
 </div>
+<script src="./js/cookie.js"></script>
+<!--cookie操作-->
+<script src="./js/main.js"></script>
+<script src="./js/self_increasing.js"></script>
+<!--自增-->
+<script src="./js/tabs.js"></script>
+<!--选项卡-->
 <script>
     var branch ; //树枝
     var litchi ; //荔枝
@@ -50,6 +57,7 @@
         basketball = 0; 
         place = "ikun村";
         explore = 0;
+        musicValue = 0;
             /*定义变量*/
       $("#guide").text("很不幸,出了车祸,你被大货车创死了") ;
       $("#guide").click(function(){
@@ -82,12 +90,16 @@
                 console.log(cookiesArr.length);
                 switch(cookiesArr.length)
                 {
-                    case 6: //未储存探索
-                        explore = 0; //定义探索
+                    case 6: 
+                        explore = 0; //探索
+                        musicValue = 0; //music
                         break;
-                    case 7: //已储存探索
+                    case 7: 
                         explore = cookiesArr[6]; //提取
+                        musicValue = 0;
                         break;
+                    case 8:
+                        musicValue = cookiesArr[7];
                     default:
                 }
             /*for(var i = 0; i < cookiesArr.length; i++){
@@ -97,14 +109,7 @@
         $("p").hide(); //隐藏开局文字
         $("#main").fadeIn(); //淡入主页面
     }   
-
+    
 </script>
-<script src="./js/cookie.js"></script>
-<!--cookie操作-->
-<script src="./js/main.js"></script>
-<script src="./js/self_increasing.js"></script>
-<!--自增-->
-<script src="./js/tabs.js"></script>
-<!--选项卡-->
 </body> 
 </html>
