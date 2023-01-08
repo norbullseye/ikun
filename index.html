@@ -128,10 +128,10 @@
     <p id="guide"></p> 
     <div hidden id="main">
         <ul class="nav" id="nav">
-            <li class="on" onclick="exerciseBox()">练习<span></span></li><!--选项卡-->
-            <li onclick="hikeBox()">远足<span></span></li>
-            <li onclick="valueBox()">属性<span></span></li>
-            <li onclick="bagBox()">背包<span></span></li>
+            <li class="on" onclick="exerciseTab()">练习<span></span></li><!--选项卡-->
+            <li onclick="hikeTab()">远足<span></span></li>
+            <li onclick="valueTab()">属性<span></span></li>
+            <li onclick="bagTab()">背包<span></span></li>
         </ul>
         <div id="tabbox1">
             <button id="first" onclick='exercise()'>唱,跳,rap</button>
@@ -224,94 +224,12 @@
         else  
             return null;  
     }
-    $('li').click(function() { //选项卡
-        $(this).addClass('on').siblings().removeClass();
-     })
-    function tishi(str,time) { //提示文字
-        $("#grey").text(str);
-        $("#grey").fadeIn();
-        setTimeout(() => {
-            $("#grey").fadeOut(); //淡出提示
-        }, time); //等待一段时间
-    }
 
-    function exerciseBox() { //练习选项卡
-        $("#tabbox1").show();
-        $("#tabbox2").hide();
-        $("#tabbox3").hide();
-        $("#tabbox4").hide();
-        upset();
-    }
-    function hikeBox() { //远足选项卡
-        $("#tabbox2").show();
-        $("#tabbox1").hide();
-        $("#tabbox3").hide();
-        $("#tabbox4").hide();
-        upset();
-
-    }
-    function valueBox() {//属性选项卡
-        $("#tabbox3").html("<p class='value1'>位置:" + place + "</p></br><p class='value1'>树枝:" + branch + "</p></br><p class='value1'>荔枝:" + litchi + "</p></br><p class='value1'>健康:" + healthy + "</p></br><p class='value1'>只因值:" + onlyBecause + "</p></br><p class='value1'>篮球:" + basketball + "</p></br>");
-        $("#tabbox3").show();
-        $("#tabbox1").hide();
-        $("#tabbox2").hide();
-        $("#tabbox4").hide();
-        upset();
-
-    }
-    function bagBox() { //背包选项卡
-        $("#tabbox4").show();
-        $("#tabbox1").hide();
-        $("#tabbox2").hide();
-        $("#tabbox3").hide();
-        upset();
-
-    }
-
-    function exercise() {  //练习按钮
-        branch += 1;
-        litchi += 1;
-    }
-    function besideVillage() { //探索村边按钮
-        
-    }
-    function lanqiu() { //打篮球按钮
-        if (branch>=30) {
-            branch -= 30; //购买一个篮球
-            basketball ++; //篮球+1
-            tishi("篮球+1",2000);
-        } else {
-            tishi("树枝不足",2000);
-        }
-    }
- 
-    function num(){//将变量转换为数字
-        branch = Number(branch);
-        litchi = Number(litchi);
-        healthy = Number(healthy);
-        onlyBecause = Number(onlyBecause);
-        basketball = Number(basketball); 
-    }
-    function upset(){ //更新
-        var edom = $("#lanqiu")[0]; //判定有无按钮"打篮球"
-        if (branch>=30 && !edom) { //追加按钮”打篮球"
-            var lan="<button id='lanqiu' onclick='lanqiu()'title='花费30树枝以购买篮球,一个篮球每秒能为你提供一个树枝'>打篮球</button>";
-            $("#first").after(lan);
-            tishi("点击[打篮球]花费30树枝以购买篮球,一个篮球每秒能为你提供一个树枝",6000);
-        } 
-    }
-
-    var timer1 = setInterval(function() { //每两秒执行一次
-        num();
-        branch = branch + basketball;//树枝每两秒自增
-    }, 2000);
-
-    var timer2 = setInterval(function() { //每十五秒执行一次
-        num();
-        var placeOnFile = branch+","+litchi+","+healthy+","+onlyBecause+","+basketball+","+place+","+explore;
-        //变量全部拼接在一起
-        setCookie("file",placeOnFile);//存档
-    }, 15000);
-</script> 
+</script>
+<script src="./js/main.js"></script>
+<script src="./js/self_increasing.js"></script>
+<!--自增-->
+<script src="./js/tabs.js"></script>
+<!--选项卡-->
 </body> 
 </html>
