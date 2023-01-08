@@ -9,7 +9,6 @@
 <script src="https://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 <!--jquery-->
 </head> 
-
 <body> 
 <div class="browserWidth">
     <p id="guide"></p> 
@@ -98,21 +97,10 @@
         $("p").hide(); //隐藏开局文字
         $("#main").fadeIn(); //淡入主页面
     }   
-     
-    function setCookie(name, value) {  //保存cookie
-        var exp = new Date();  
-        exp.setTime(exp.getTime() + 60 * 365 * 24 * 60 * 60 * 1000);  
-        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";  
-    }
-     function getCookie(name) {  //读取cookie
-        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");  
-        if (arr = document.cookie.match(reg))  
-            return unescape(arr[2]);  
-        else  
-            return null;  
-    }
 
 </script>
+<script src="./js/cookie.js"></script>
+<!--cookie操作-->
 <script src="./js/main.js"></script>
 <script src="./js/self_increasing.js"></script>
 <!--自增-->
