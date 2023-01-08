@@ -1,0 +1,53 @@
+p{
+    margin: 50px;
+}
+p#grey{
+    color: darkgrey;
+}
+/*提示文字*/
+p.value1{
+    margin: 5px;
+}
+/*让属性值显示得更紧凑*/
+
+:root{
+    --primary-color: royalblue;
+}
+button{
+    padding: 5px 16px;
+    color: #000000d9;
+    border: 1px solid #d9d9d9;
+    background-color: transparent;
+    border-radius: 2px;
+    line-height: 1.4;
+    box-shadow: 0 2px #00000004;
+    cursor: pointer;
+    transition: .3s;
+    height: 50px;
+    width: 100px;
+    margin: 30px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+button:hover{
+    color: var(--primary-color);
+    border-color: currentColor;
+}
+button::after{
+/*其他样式*/
+    opacity: 0;
+    box-shadow: 0 0 0 6px var(--primary-color);
+    transition: .3s;
+}
+/*点击*/
+button:active::after{
+    box-shadow: none;
+    opacity: 0.4;
+    transition: 0s; /*取消过渡*/
+}
+/*按钮样式*/
+button.gongneng{
+    height: 30px;
+    width: 60px;
+    margin: 15px;
+}

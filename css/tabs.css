@@ -1,0 +1,58 @@
+.browserWidth{ height:640px; border:1px solid #000; margin:0 auto} 
+@media screen and (min-width: 1201px) { 
+.browserWidth {width: 1200px}  
+} 
+/* css 注释说明：设置了浏览器宽度不小于1201px时 browserWidth 显示1200px宽度 */ 
+ 
+@media screen and (max-width: 1200px) { 
+.browserWidth {width: 960px}  
+} 
+/* 设置了浏览器宽度不大于1200px时 browserWidth 显示960px宽度 */ 
+ 
+@media screen and (max-width: 960px) { 
+.browserWidth {width: 600px;}  
+} 
+/* 设置了浏览器宽度不大于960px时 browserWidth 显示600px宽度 */ 
+ 
+@media screen and (max-width: 640px) { 
+.browserWidth {width: 200px;}  
+} 
+/* 设置了浏览器宽度不大于640px时 browserWidth 显示200px宽度 */ 
+ul,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  /*列表css*/
+
+  .nav {
+    width: 80%;
+    line-height: 48px;
+    background: #f6f8fa;
+    overflow: hidden;
+    margin: 10px auto 0;
+  }
+
+  .nav li {
+    width: 140px;
+    line-height: 48px;
+    display: inline-block;
+    color: #7f7f7f;
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .nav li span {
+    padding-left: 4px;
+    font-size: 12px;
+    color: red;
+  }
+  /*任务提示（红）*/
+
+  .nav li.on {
+    border-top: 3px solid #17b8f8;
+    border-radius: 7px 7px 0 0;
+    background: #fff;
+  }
