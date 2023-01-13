@@ -17,7 +17,7 @@ function hikeTab() { //远足选项卡
 
 }
 function valueTab() {//属性选项卡
-    $("#tabbox3").html("<p class='value1'>位置:" + place + "</p></br>  <p class='value1'>树枝:" + branch + "</p></br>  <p class='value1'>荔枝:" + litchi + "</p></br>  <p class='value1'>健康:" + healthy + "</p></br>  <p class='value1'>只因值:" + onlyBecause + "</p></br><hr>  <p class='value1'>篮球:" + basketball + "</p></br>  <p class='value1'>music:" + musicValue + "</p></br>");
+    $("#tabbox3").html("<p class='value1'>位置:" + place + "</p></br>  <p class='value1'>树枝:" + branch + "</p></br>  <p class='value1'>荔枝:" + litchi + "</p></br>  <p class='value1'>健康:" + healthy + "</p></br>  <p class='value1'>只因值:" + onlyBecause + "</p></br><hr>  <p class='value1'>篮球:" + basketball + "</p></br>  <p class='value1'>music:" + musicValue + "</p></br><p class='value1'>探索值:" + explore + "</p></br>");
     $("#tabbox3").show();
     $("#tabbox1").hide();
     $("#tabbox2").hide();

@@ -13,12 +13,12 @@ function addendum(lan,tishiv) {//按钮内容，提示内容
 function upset() { //更新
     var edom = $("#lanqiu")[0];//判定有无按钮"打篮球"
     if (branch>=30 && !edom) {
-        addendum("<button id='lanqiu' onclick='lanqiu()'title='花费30树枝以购买篮球,一个篮球每秒两能为你提供一个树枝'>打篮球</button>","点击[打篮球]花费30树枝以购买篮球,一个篮球每两秒能为你提供一个树枝");
+        addendum("<button id='lanqiu' onclick='lanqiu()'title='花费30树枝以购买篮球,一个篮球每秒两能为你提供一个树枝'>打篮球 30树枝</button>","点击[打篮球]花费30树枝以购买篮球,一个篮球每两秒能为你提供一个树枝");
     }
     
     var edom1 = $("#music")[0];//判定有无按钮"music"
     if (branch>=150 && !edom1) { //追加按钮"music"
-        addendum("<button id='music' onclick='music()'title='点击[music]花费150树枝以购买music,一个music每两秒能将一个树枝转换为两个荔枝'>music</button>","点击[music]花费150树枝以购买music,一个music每两秒能将一个树枝转换为两个荔枝");
+        addendum("<button id='music' onclick='music()'title='点击[music]花费150树枝以购买music,一个music每两秒能将一个树枝转换为两个荔枝'>music 150树枝</button>","点击[music]花费150树枝以购买music,一个music每两秒能将一个树枝转换为两个荔枝");
     }
 }
 
