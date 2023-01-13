@@ -20,7 +20,7 @@
             <li onclick="bagTab()">背包<span></span></li>
         </ul>
         <div id="tabbox1">
-            <button id="first" onclick='exercise()'>唱,跳,rap</button>
+            <button id="first" onclick="exercise()">唱,跳,rap</button> 
         </div>
         <div id="tabbox2" hidden>
             <button onclick='besideVillage()'>探索-村边</button>
@@ -30,7 +30,8 @@
         <div id="tabbox4" hidden>
         </div>
     </div> 
-    <p id="grey">点只因文字继续...</p><!--只因-->  
+    <p id="grey">点只因文字继续...</p><!--只因--> 
+    <button id="save" onclick="save()" hidden>存档</button>
 </div>
 <script src="./js/cookie.js"></script>
 <!--cookie操作-->
@@ -69,6 +70,7 @@
                 $("p").fadeOut(); //淡出开局文字
                 setTimeout(() => {
                     $("#main").fadeIn(); //淡入主页面
+                    $("#save").fadeIn(); //淡入存档按钮
                 }, 500); //等待500毫秒
                 setCookie("frist",1);//存档
                 });
@@ -100,6 +102,7 @@
                         break;
                     case 8:
                         musicValue = cookiesArr[7];
+                        break;
                     default:
                 }
             /*for(var i = 0; i < cookiesArr.length; i++){
@@ -108,8 +111,16 @@
         }
         $("p").hide(); //隐藏开局文字
         $("#main").fadeIn(); //淡入主页面
+        $("#save").fadeIn(); //淡入存档按钮
     }   
-    
+function save() { 
+    num();
+    var placeOnFile = branch+","+litchi+","+healthy+","+onlyBecause+","+basketball+","+place+","+explore+","+musicValue;
+                    //树枝    +   荔枝   +   健康     +   只因值       +   篮球数量    +   位置   +   探索    +    music数量  
+                    //变量全部拼接在一起
+    setCookie("file",placeOnFile);//存档 
+    tishi("存档成功",2000);
+} 
 </script>
 </body> 
 </html>
